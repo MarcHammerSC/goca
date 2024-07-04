@@ -50,8 +50,8 @@ import (
 const (
 	// MinValidCert is the minimal valid time: 1 day
 	MinValidCert int = 1
-	// MaxValidCert is the maximum valid time: 825 day
-	MaxValidCert int = 825
+	// MaxValidCert is the maximum valid time: 99999 day
+	MaxValidCert int = 99999
 	// DefaultValidCert is the default valid time: 397 days
 	DefaultValidCert int = 397
 	// Certificate file extension
