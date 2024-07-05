@@ -1,4 +1,4 @@
-module github.com/MarcHammerSC/goca/v2
+module github.com/MarcHammerSC/goca
 
 go 1.21
 
