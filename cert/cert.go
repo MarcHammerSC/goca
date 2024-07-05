@@ -252,7 +252,7 @@ func CreateCACert(
 		NotBefore:             time.Now(),
 		NotAfter:              time.Now().AddDate(0, 0, validDays),
 		IsCA:                  true,
-		ExtKeyUsage:           []x509.ExtKeyUsage{x509.ExtKeyUsageClientAuth, x509.ExtKeyUsageServerAuth},
+		ExtKeyUsage:           []x509.ExtKeyUsage{},
 		KeyUsage:              x509.KeyUsageDigitalSignature | x509.KeyUsageCertSign | x509.KeyUsageCRLSign,
 		BasicConstraintsValid: true,
 		IPAddresses:           ipAddresses,
