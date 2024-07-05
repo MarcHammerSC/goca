@@ -9,8 +9,8 @@ import (
 	swaggerFiles "github.com/swaggo/files"
 	ginSwagger "github.com/swaggo/gin-swagger"
 
-	_ "github.com/kairoaraujo/goca/v2/docs"
-	"github.com/kairoaraujo/goca/v2/rest-api/controllers"
+	_ "github.com/MarcHammerSC/goca//docs"
+	"github.com/MarcHammerSC/goca//rest-api/controllers"
 )
 
 // @title GoCA API

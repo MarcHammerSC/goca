@@ -5,7 +5,7 @@ import (
 	"log"
 	"os"
 
-	"github.com/kairoaraujo/goca/v2"
+	"github.com/MarcHammerSC/goca/"
 )
 
 func Example_minimal() {

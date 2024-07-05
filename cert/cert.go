@@ -43,8 +43,8 @@ import (
 	"path/filepath"
 	"time"
 
-	storage "github.com/kairoaraujo/goca/v2/_storage"
-	"github.com/kairoaraujo/goca/v2/key"
+	storage "github.com/MarcHammerSC/goca//_storage"
+	"github.com/MarcHammerSC/goca//key"
 )
 
 const (

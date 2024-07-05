@@ -1,7 +1,7 @@
 package models
 
 import (
-	"github.com/kairoaraujo/goca/v2"
+	"github.com/MarcHammerSC/goca/"
 )
 
 type ResponseError struct {
