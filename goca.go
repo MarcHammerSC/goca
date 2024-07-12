@@ -166,9 +166,9 @@ func (c *CA) Status() string {
 }
 
 // SignCSR perform a creation of certificate from a CSR (x509.CertificateRequest) and returns *x509.Certificate
-func (c *CA) SignCSR(csr x509.CertificateRequest, valid int) (certificate Certificate, err error) {
+func (c *CA) SignCSR(csr x509.CertificateRequest, valid int, ExtKeyUsage []x509.ExtKeyUsage) (certificate Certificate, err error) {
 
-	certificate, err = c.signCSR(csr, valid)
+	certificate, err = c.signCSR(csr, valid, ExtKeyUsage)
 
 	return certificate, err
 
@@ -177,9 +177,9 @@ func (c *CA) SignCSR(csr x509.CertificateRequest, valid int) (certificate Certif
 // IssueCertificate creates a new certificate
 //
 // It is import create an Identity{} with Certificate Client/Server information.
-func (c *CA) IssueCertificate(commonName string, id Identity) (certificate Certificate, err error) {
+func (c *CA) IssueCertificate(commonName string, id Identity, ExtKeyUsage []x509.ExtKeyUsage) (certificate Certificate, err error) {
 
-	certificate, err = c.issueCertificate(commonName, id)
+	certificate, err = c.issueCertificate(commonName, id, ExtKeyUsage)
 
 	return certificate, err
 }

@@ -253,7 +253,7 @@ func CreateCACert(
 		NotAfter:              time.Now().AddDate(0, 0, validDays),
 		IsCA:                  true,
 		ExtKeyUsage:           []x509.ExtKeyUsage{},
-		KeyUsage:              x509.KeyUsageDigitalSignature | x509.KeyUsageCertSign | x509.KeyUsageCRLSign,
+		KeyUsage:              x509.KeyUsageCertSign | x509.KeyUsageCRLSign,
 		BasicConstraintsValid: true,
 		IPAddresses:           ipAddresses,
 	}
@@ -316,7 +316,7 @@ func LoadCert(certString []byte) (*x509.Certificate, error) {
 // CASignCSR signs an Certificate Signing Request and returns the Certificate as Go bytes.
 //
 // A file is also stored in $CAPATH/certs/<CSR Common Name>/<CSR Common Name>.crt
-func CASignCSR(CACommonName string, csr x509.CertificateRequest, caCert *x509.Certificate, privKey *rsa.PrivateKey, valid int, creationType storage.CreationType) (cert []byte, err error) {
+func CASignCSR(CACommonName string, csr x509.CertificateRequest, caCert *x509.Certificate, privKey *rsa.PrivateKey, valid int, creationType storage.CreationType,ExtKeyUse  []x509.ExtKeyUsage) (cert []byte, err error) {
 	if valid == 0 {
 		valid = DefaultValidCert
 
@@ -352,7 +352,7 @@ func CASignCSR(CACommonName string, csr x509.CertificateRequest, caCert *x509.Ce
 		NotBefore:    time.Now(),
 		NotAfter:     time.Now().AddDate(0, 0, valid),
 		KeyUsage:     x509.KeyUsageDigitalSignature,
-		ExtKeyUsage:  []x509.ExtKeyUsage{x509.ExtKeyUsageClientAuth, x509.ExtKeyUsageServerAuth},
+		ExtKeyUsage:  ExtKeyUse,
 		IPAddresses:  csr.IPAddresses,
 	}
 

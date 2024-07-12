@@ -282,7 +282,7 @@ func (c *CA) loadCA(commonName string) error {
 	return nil
 }
 
-func (c *CA) signCSR(csr x509.CertificateRequest, valid int) (certificate Certificate, err error) {
+func (c *CA) signCSR(csr x509.CertificateRequest, valid int, ExtKeyUsage []x509.ExtKeyUsage) (certificate Certificate, err error) {
 
 	certificate = Certificate{
 		commonName:    csr.Subject.CommonName,
@@ -299,7 +299,7 @@ func (c *CA) signCSR(csr x509.CertificateRequest, valid int) (certificate Certif
 		certificate.CSR = string(csrString)
 	}
 
-	certBytes, err := cert.CASignCSR(c.CommonName, csr, c.Data.certificate, &c.Data.privateKey, valid, storage.CreationTypeCertificate)
+	certBytes, err := cert.CASignCSR(c.CommonName, csr, c.Data.certificate, &c.Data.privateKey, valid, storage.CreationTypeCertificate, ExtKeyUsage)
 	if err != nil {
 		return certificate, err
 	}
@@ -338,7 +338,7 @@ func (c *CA) signCSR(csr x509.CertificateRequest, valid int) (certificate Certif
 
 }
 
-func (c *CA) issueCertificate(commonName string, id Identity) (certificate Certificate, err error) {
+func (c *CA) issueCertificate(commonName string, id Identity, ExtKeyUsage  []x509.ExtKeyUsage) (certificate Certificate, err error) {
 
 	var (
 		caCertsDir      string = filepath.Join(c.CommonName, "certs")
@@ -383,7 +383,7 @@ func (c *CA) issueCertificate(commonName string, id Identity) (certificate Certi
 
 	certificate.csr = *csr
 	certificate.CSR = string(csrString)
-	certBytes, err := cert.CASignCSR(c.CommonName, *csr, c.Data.certificate, &c.Data.privateKey, id.Valid, storage.CreationTypeCertificate)
+	certBytes, err := cert.CASignCSR(c.CommonName, *csr, c.Data.certificate, &c.Data.privateKey, id.Valid, storage.CreationTypeCertificate, ExtKeyUsage)
 	if err != nil {
 		return certificate, err
 	}
